@@ -1,0 +1,26 @@
+<svg width="200" height="200" viewBox="0 0 200 200" xmlns="http://www.w3.org/2000/svg">
+  <!-- Background Circle -->
+  <circle cx="100" cy="100" r="95" fill="#000000" stroke="#E53935" stroke-width="2"/>
+  
+  <!-- Camera Viewfinder Corners -->
+  <!-- Top Left -->
+  <path d="M 40 40 L 40 60 M 40 40 L 60 40" stroke="#FAFAFA" stroke-width="3" fill="none" stroke-linecap="round"/>
+  
+  <!-- Top Right -->
+  <path d="M 160 40 L 140 40 M 160 40 L 160 60" stroke="#FAFAFA" stroke-width="3" fill="none" stroke-linecap="round"/>
+  
+  <!-- Bottom Left -->
+  <path d="M 40 160 L 40 140 M 40 160 L 60 160" stroke="#FAFAFA" stroke-width="3" fill="none" stroke-linecap="round"/>
+  
+  <!-- Bottom Right -->
+  <path d="M 160 160 L 140 160 M 160 160 L 160 140" stroke="#FAFAFA" stroke-width="3" fill="none" stroke-linecap="round"/>
+  
+  <!-- Text SVIESA -->
+  <text x="100" y="95" font-family="Montserrat, sans-serif" font-size="28" font-weight="900" fill="#FAFAFA" text-anchor="middle">SVIESA</text>
+  
+  <!-- Red accent dot (recording symbol) -->
+  <circle cx="100" cy="120" r="6" fill="#E53935"/>
+  
+  <!-- Subtitle -->
+  <text x="100" y="140" font-family="Inter, sans-serif" font-size="8" font-weight="600" fill="#E53935" text-anchor="middle" letter-spacing="2">MEDIA CLUB</text>
+</svg>
