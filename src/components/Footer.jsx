@@ -1,5 +1,5 @@
 import React from 'react';
-import { FiMail, FiInstagram, FiYoutube, FiFacebook } from 'react-icons/fi';
+import { FiMail, FiInstagram, FiYoutube, FiLinkedin, FiLink } from 'react-icons/fi';
 
 const Footer = () => {
   return (
@@ -16,25 +16,32 @@ const Footer = () => {
             </p>
             <div className="flex gap-4">
               <a
-                href="#"
+                href="https://www.instagram.com/sviesa.sliet/"
                 className="text-soft-white hover:text-brand-red transition-colors duration-300"
                 aria-label="Instagram"
               >
                 <FiInstagram size={24} />
               </a>
               <a
-                href="#"
+                href="http://www.youtube.com/@SviesaThePMCSLIET"
                 className="text-soft-white hover:text-brand-red transition-colors duration-300"
                 aria-label="YouTube"
               >
                 <FiYoutube size={24} />
               </a>
               <a
-                href="#"
+                href="https://www.linkedin.com"
                 className="text-soft-white hover:text-brand-red transition-colors duration-300"
-                aria-label="Facebook"
+                aria-label="LinkedIn"
               >
-                <FiFacebook size={24} />
+                <FiLinkedin size={24} />
+              </a>
+              <a
+                href="https://linktr.ee/sviesa.sliet?utm_source=linktree_profile_share&ltsid=9fb0e157-64a5-4bef-9413-baf29594fcbe"
+                className="text-soft-white hover:text-brand-red transition-colors duration-300"
+                aria-label="Linktree"
+              >
+                <FiLink size={24} />
               </a>
             </div>
           </div>
@@ -62,11 +69,11 @@ const Footer = () => {
             <p className="text-soft-white/70 mb-2">SLIET, Longowal</p>
             <p className="text-soft-white/70 mb-4">Punjab, India</p>
             <a
-              href="mailto:contact@sviesa.club"
+              href="mailto:sviesa.sliet@gmail.com"
               className="inline-flex items-center gap-2 text-soft-white hover:text-brand-red transition-colors duration-300"
             >
               <FiMail size={18} />
-              contact@sviesa.club
+              sviesa.sliet@gmail.com
             </a>
           </div>
         </div>

@@ -6,6 +6,7 @@ import About from './components/About';
 import Activities from './components/Activities';
 import Gallery from './components/Gallery';
 import Events from './components/Events';
+import InstagramFeed from './components/InstagramFeed';
 import Contact from './components/Contact';
 import Footer from './components/Footer';
 import ScrollToTop from './components/ScrollToTop';
@@ -19,6 +20,7 @@ function App() {
       <About />
       <Activities />
       <Gallery />
+      <InstagramFeed />
       <Events />
       <Contact />
       <Footer />
