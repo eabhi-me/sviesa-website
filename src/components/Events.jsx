@@ -7,12 +7,12 @@ const Events = () => {
     {
       title: 'Photowalk',
       description: 'Experience the world through a new lens with Sviesa\'s captivating photowalks. Guided by our photography enthusiasts, these walks offer a unique blend of art and exploration. Join us as we navigate picturesque landscapes, urban gems, and hidden corners, all while refining your photography skills.',
-      image: 'photowalk'
+      image: '/images/IMG (14).jpeg'
     },
     {
       title: 'Photo Exhibition',
       description: 'Sviesa recently curated a captivating Photo Exhibition that transformed our campus into a gallery of visual narratives. The event showcased a diverse collection of images that captured emotions, stories, and moments frozen in time, providing a platform for both amateur and seasoned photographers.',
-      image: 'exhibition'
+      image: '/images/IMG (15).jpeg'
     }
   ];
 
@@ -84,12 +84,14 @@ const Events = () => {
                 transition={{ duration: 0.6, delay: index * 0.2 }}
                 className="group relative overflow-hidden rounded-lg border border-deep-crimson/20 hover:border-brand-red/50 transition-all duration-300"
               >
-                {/* Image Placeholder */}
+                {/* Event Image */}
                 <div className="aspect-video bg-gradient-to-br from-deep-crimson/20 to-brand-red/10 relative overflow-hidden">
-                  <div className="absolute inset-0 flex items-center justify-center">
-                    <FiImage className="text-soft-white/20 group-hover:text-brand-red/30 transition-colors duration-300" size={64} />
-                  </div>
-                  <div className="absolute inset-0 bg-pure-black/50 group-hover:bg-pure-black/30 transition-all duration-300"></div>
+                  <img 
+                    src={event.image} 
+                    alt={event.title}
+                    className="absolute inset-0 w-full h-full object-cover group-hover:scale-110 transition-transform duration-500"
+                  />
+                  <div className="absolute inset-0 bg-pure-black/40 group-hover:bg-pure-black/20 transition-all duration-300"></div>
                 </div>
 
                 {/* Content */}

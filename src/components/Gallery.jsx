@@ -3,16 +3,16 @@ import { motion } from 'framer-motion';
 import { FiImage } from 'react-icons/fi';
 
 const Gallery = () => {
-  // Masonry grid layout items
+  // Masonry grid layout items with real images
   const galleryItems = [
-    { id: 1, title: 'Madhuram 2k22', type: 'Event Photography', span: 'col-span-2 row-span-2' },
-    { id: 2, title: 'Administrative Block', type: 'Architecture', span: 'col-span-1 row-span-1' },
-    { id: 3, title: 'Campus Tour', type: 'Videography', span: 'col-span-1 row-span-1' },
-    { id: 4, title: 'Republic Day', type: 'Event Coverage', span: 'col-span-1 row-span-2' },
-    { id: 5, title: 'TechFest', type: 'Event Photography', span: 'col-span-2 row-span-1' },
-    { id: 6, title: 'Independence Day', type: 'Celebration', span: 'col-span-1 row-span-1' },
-    { id: 7, title: 'Photo Exhibition', type: 'Gallery Event', span: 'col-span-1 row-span-1' },
-    { id: 8, title: 'Photowalk', type: 'Outdoor', span: 'col-span-2 row-span-2' },
+    { id: 1, image: '/images/IMG (1).jpeg', title: 'Photography Highlight', type: 'Event Photography', span: 'col-span-2 row-span-2' },
+    { id: 2, image: '/images/IMG (2).jpeg', title: 'Candid Moment', type: 'Portrait', span: 'col-span-1 row-span-1' },
+    { id: 3, image: '/images/IMG (3).jpeg', title: 'Campus Life', type: 'Documentary', span: 'col-span-1 row-span-1' },
+    { id: 4, image: '/images/IMG (4).jpeg', title: 'Event Coverage', type: 'Photojournalism', span: 'col-span-1 row-span-2' },
+    { id: 5, image: '/images/IMG (5).jpeg', title: 'Behind the Scenes', type: 'Cinematography', span: 'col-span-2 row-span-1' },
+    { id: 6, image: '/images/IMG (6).jpeg', title: 'Artistic Shot', type: 'Fine Art', span: 'col-span-1 row-span-1' },
+    { id: 7, image: '/images/IMG (7).jpeg', title: 'Group Moments', type: 'Event Photography', span: 'col-span-1 row-span-1' },
+    { id: 8, image: '/images/IMG (8).jpeg', title: 'Nature & Landscapes', type: 'Photography', span: 'col-span-2 row-span-2' },
   ];
 
   return (
@@ -49,13 +49,15 @@ const Gallery = () => {
               transition={{ duration: 0.5, delay: index * 0.05 }}
               className={`group relative overflow-hidden rounded-lg ${item.span} cursor-pointer`}
             >
-              {/* Image Placeholder */}
-              <div className="absolute inset-0 bg-gradient-to-br from-deep-crimson/30 to-brand-red/20 flex items-center justify-center">
-                <FiImage className="text-soft-white/20 group-hover:text-soft-white/40 transition-colors duration-300" size={48} />
-              </div>
+              {/* Image */}
+              <img
+                src={item.image}
+                alt={item.title}
+                className="absolute inset-0 w-full h-full object-cover group-hover:scale-110 transition-transform duration-500"
+              />
 
               {/* Overlay */}
-              <div className="absolute inset-0 bg-pure-black/60 group-hover:bg-pure-black/40 transition-all duration-300">
+              <div className="absolute inset-0 bg-pure-black/40 group-hover:bg-pure-black/30 transition-all duration-300">
                 <div className="absolute inset-0 border-2 border-transparent group-hover:border-deep-crimson/50 transition-all duration-300"></div>
               </div>
 

@@ -8,6 +8,11 @@ const Contact = () => {
     email: '',
     message: ''
   });
+  const [isSubmitting, setIsSubmitting] = useState(false);
+  const [submitStatus, setSubmitStatus] = useState({ type: '', message: '' });
+
+  // Google Apps Script endpoint from environment variable
+  const GOOGLE_SCRIPT_URL = import.meta.env.VITE_GOOGLE_SCRIPT_URL;
 
   const handleChange = (e) => {
     setFormData({
@@ -16,12 +21,37 @@ const Contact = () => {
     });
   };
 
-  const handleSubmit = (e) => {
+  const handleSubmit = async (e) => {
     e.preventDefault();
-    // Add form submission logic here
-    console.log('Form submitted:', formData);
-    alert('Thank you for your message! We will get back to you soon.');
-    setFormData({ name: '', email: '', message: '' });
+    setIsSubmitting(true);
+    setSubmitStatus({ type: '', message: '' });
+
+    try {
+      const response = await fetch(GOOGLE_SCRIPT_URL, {
+        method: 'POST',
+        mode: 'no-cors',
+        headers: {
+          'Content-Type': 'application/json',
+        },
+        body: JSON.stringify(formData)
+      });
+
+      // Note: With 'no-cors' mode, we can't read the response
+      // We assume success if no error is thrown
+      setSubmitStatus({
+        type: 'success',
+        message: 'Thank you for your message! We will get back to you soon.'
+      });
+      setFormData({ name: '', email: '', message: '' });
+    } catch (error) {
+      console.error('Error submitting form:', error);
+      setSubmitStatus({
+        type: 'error',
+        message: 'Sorry, there was an error sending your message. Please try again.'
+      });
+    } finally {
+      setIsSubmitting(false);
+    }
   };
 
   return (
@@ -84,6 +114,16 @@ const Contact = () => {
               </h3>
               
               <form onSubmit={handleSubmit} className="space-y-6">
+                {submitStatus.message && (
+                  <div className={`p-4 rounded-lg ${
+                    submitStatus.type === 'success' 
+                      ? 'bg-green-500/20 border border-green-500/30 text-green-400' 
+                      : 'bg-red-500/20 border border-red-500/30 text-red-400'
+                  }`}>
+                    {submitStatus.message}
+                  </div>
+                )}
+
                 <div>
                   <label htmlFor="name" className="block text-soft-white/80 mb-2 text-sm font-medium">
                     Your Name
@@ -143,10 +183,11 @@ const Contact = () => {
 
                 <button
                   type="submit"
-                  className="w-full bg-brand-red text-soft-white font-semibold py-3 px-6 rounded-lg hover:bg-deep-crimson transition-colors duration-300 flex items-center justify-center gap-2 group"
+                  disabled={isSubmitting}
+                  className="w-full bg-brand-red text-soft-white font-semibold py-3 px-6 rounded-lg hover:bg-deep-crimson transition-colors duration-300 flex items-center justify-center gap-2 group disabled:opacity-50 disabled:cursor-not-allowed"
                 >
-                  <span>Send Message</span>
-                  <FiSend className="group-hover:translate-x-1 transition-transform duration-300" size={18} />
+                  <span>{isSubmitting ? 'Sending...' : 'Send Message'}</span>
+                  <FiSend className={`${isSubmitting ? 'animate-pulse' : 'group-hover:translate-x-1'} transition-transform duration-300`} size={18} />
                 </button>
               </form>
             </div>

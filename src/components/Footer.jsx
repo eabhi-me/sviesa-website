@@ -1,5 +1,5 @@
 import React from 'react';
-import { FiMail, FiInstagram, FiYoutube, FiLinkedin, FiLink } from 'react-icons/fi';
+import { FiMail, FiInstagram, FiYoutube, FiLinkedin, FiLink, FiCode, FiGithub, FiGlobe } from 'react-icons/fi';
 
 const Footer = () => {
   return (
@@ -79,10 +79,39 @@ const Footer = () => {
         </div>
 
         {/* Bottom Bar */}
-        <div className="border-t border-deep-crimson/20 mt-8 pt-8 text-center">
-          <p className="text-soft-white/50 text-sm">
-            &copy; {new Date().getFullYear()} Sviesa Photography & Media Club. All rights reserved.
-          </p>
+        <div className="border-t border-deep-crimson/20 mt-8 pt-8">
+          <div className="flex flex-col items-center gap-4">
+            <p className="text-soft-white/50 text-sm">
+              &copy; {new Date().getFullYear()} Sviesa Photography & Media Club. All rights reserved.
+            </p>
+            <div className="flex items-center gap-2 text-soft-white/40 text-sm">
+              <FiCode className="text-brand-red" size={16} />
+              <span>Developed by</span>
+              <div className="flex items-center gap-3">
+                <a
+                  href="https://github.com/eabhi-me"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="inline-flex items-center gap-1 hover:text-brand-red transition-colors duration-300"
+                  aria-label="Developer GitHub"
+                >
+                  <FiGithub size={14} />
+                  <span>GitHub</span>
+                </a>
+                {/* <span className="text-soft-white/20">|</span>
+                <a
+                  href="https://eabhi.me"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="inline-flex items-center gap-1 hover:text-brand-red transition-colors duration-300"
+                  aria-label="Developer Website"
+                >
+                  <FiGlobe size={14} />
+                  <span>Website</span>
+                </a> */}
+              </div>
+            </div>
+          </div>
         </div>
       </div>
     </footer>

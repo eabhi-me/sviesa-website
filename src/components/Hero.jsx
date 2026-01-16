@@ -1,6 +1,24 @@
 import React from 'react';
 import { motion } from 'framer-motion';
-import { FiCamera, FiPlay, FiArrowDown } from 'react-icons/fi';
+import { FiCamera, FiPlay, FiArrowDown, FiInstagram, FiYoutube, FiLinkedin } from 'react-icons/fi';
+import { SiLinktree } from 'react-icons/si';
+
+const socialParticles = [
+  { Icon: FiInstagram, color: 'text-brand-red', top: '18%', left: '14%', duration: 6, delay: 0 },
+  { Icon: FiYoutube, color: 'text-soft-white', top: '32%', left: '78%', duration: 7, delay: 0.6 },
+  { Icon: FiLinkedin, color: 'text-soft-white/80', top: '65%', left: '22%', duration: 5.5, delay: 0.3 },
+  { Icon: FiCamera, color: 'text-brand-red', top: '70%', left: '70%', duration: 7.5, delay: 0.9 },
+];
+
+const keywordPhrases = [
+  'Street & Event Photography',
+  'Creative Direction & Storyboarding',
+  'Motion Graphics & Editing',
+  'Brand Visual Systems',
+  'Portraits, Light, and Color',
+];
+
+const keywordLoop = [...keywordPhrases, ...keywordPhrases];
 
 const Hero = () => {
   return (
@@ -27,6 +45,26 @@ const Hero = () => {
               }}
             />
           ))}
+        </div>
+
+        {/* Floating social/media motifs */}
+        <div className="absolute inset-0 pointer-events-none">
+          {socialParticles.map(({ Icon, color, top, left, duration, delay }, idx) => (
+            <motion.div
+              key={idx}
+              className={`absolute ${color}`}
+              style={{ top, left }}
+              animate={{ y: [0, -14, 0], rotate: [0, 6, -6, 0], opacity: [0.4, 0.9, 0.6] }}
+              transition={{ duration, repeat: Infinity, ease: 'easeInOut', delay }}
+            >
+              <div className="p-3 rounded-full bg-pure-black/50 border border-brand-red/20 shadow-lg shadow-brand-red/10 backdrop-blur-sm">
+                <Icon size={20} />
+              </div>
+            </motion.div>
+          ))}
+
+          {/* Subtle halo */}
+          <div className="absolute inset-0 bg-[radial-gradient(circle_at_20%_30%,rgba(220,20,60,0.12),transparent_35%),radial-gradient(circle_at_80%_60%,rgba(255,255,255,0.08),transparent_32%)] blur-3xl" />
         </div>
       </div>
 
@@ -63,6 +101,27 @@ const Hero = () => {
           <span className="text-brand-red font-medium">Immortalizing memories.</span>
         </motion.p>
 
+        {/* Keyword Carousel */}
+        <div className="relative overflow-hidden h-12 sm:h-14 mb-12">
+          <motion.div
+            animate={{ y: ['0%', '-50%'] }}
+            transition={{ duration: 3, repeat: Infinity, ease: 'linear' }}
+            className="flex flex-col gap-3 text-soft-white/80 text-lg sm:text-xl font-medium tracking-tight"
+          >
+            {keywordLoop.map((phrase, idx) => (
+              <div
+                key={idx}
+                className="flex items-center justify-center gap-2"
+              >
+                <span className="inline-block h-px w-10 bg-brand-red/60"></span>
+                <span>{phrase}</span>
+                <span className="inline-block h-px w-10 bg-brand-red/60"></span>
+              </div>
+            ))}
+          </motion.div>
+          <div className="pointer-events-none absolute inset-0 bg-gradient-to-b from-pure-black via-transparent to-pure-black" />
+        </div>
+
         {/* CTA Buttons */}
         <motion.div
           initial={{ opacity: 0, y: 30 }}
@@ -87,6 +146,38 @@ const Hero = () => {
           >
             <FiPlay size={20} />
             Our Activities
+          </a>
+        </motion.div>
+
+        {/* Social Links */}
+        <motion.div
+          initial={{ opacity: 0, y: 30 }}
+          animate={{ opacity: 1, y: 0 }}
+          transition={{ duration: 0.8, delay: 0.9 }}
+          className="flex gap-6 justify-center items-center mt-12"
+        >
+          <a
+            href="https://www.instagram.com/sviesa.sliet/"
+            target="_blank"
+            rel="noopener noreferrer"
+            className="group flex items-center gap-2 text-soft-white/70 hover:text-brand-red transition-colors duration-300"
+            aria-label="Follow us on Instagram"
+          >
+            <FiInstagram size={24} className="group-hover:scale-110 transition-transform duration-300" />
+            <span className="text-sm font-medium">@sviesa.sliet</span>
+          </a>
+          
+          <div className="h-8 w-px bg-soft-white/20"></div>
+          
+          <a
+            href="https://linktr.ee/sviesa.sliet?utm_source=linktree_profile_share&ltsid=9fb0e157-64a5-4bef-9413-baf29594fcbe"
+            target="_blank"
+            rel="noopener noreferrer"
+            className="group flex items-center gap-2 text-soft-white/70 hover:text-brand-red transition-colors duration-300"
+            aria-label="View our Linktree"
+          >
+            <SiLinktree size={24} className="group-hover:scale-110 transition-transform duration-300" />
+            <span className="text-sm font-medium">All Links</span>
           </a>
         </motion.div>
 

@@ -21,26 +21,51 @@ const InstagramFeed = () => {
   const placeholders = useMemo(
     () => [
       {
+        id: 'featured-post',
+        caption: '✨ Featured Post - Check out our latest work!',
+        media_url: '/images/IMG (9).jpeg',
+        permalink: 'https://www.instagram.com/p/DPfiYYVkz_9/',
+        media_type: 'IMAGE',
+        timestamp: new Date().toISOString(),
+        featured: true
+      },
+      {
         id: 'placeholder-1',
         caption: 'Your latest highlight goes here.',
-        media_url: '/images/gallery/photo-1.jpg',
-        permalink: '#',
+        media_url: '/images/IMG (10).jpeg',
+        permalink: 'https://www.instagram.com/sviesa.sliet/',
         media_type: 'IMAGE',
         timestamp: new Date().toISOString(),
       },
       {
         id: 'placeholder-2',
         caption: 'Add an action shot or behind-the-scenes frame.',
-        media_url: '/images/gallery/photo-2.jpg',
-        permalink: '#',
+        media_url: '/images/IMG (11).jpeg',
+        permalink: 'https://www.instagram.com/sviesa.sliet/',
         media_type: 'IMAGE',
         timestamp: new Date().toISOString(),
       },
       {
         id: 'placeholder-3',
         caption: 'Showcase a signature portrait or team moment.',
-        media_url: '/images/gallery/photo-3.jpg',
-        permalink: '#',
+        media_url: '/images/IMG (12).jpeg',
+        permalink: 'https://www.instagram.com/sviesa.sliet/',
+        media_type: 'IMAGE',
+        timestamp: new Date().toISOString(),
+      },
+      {
+        id: 'placeholder-4',
+        caption: 'Behind the scenes of our latest photoshoot.',
+        media_url: '/images/IMG (13).jpeg',
+        permalink: 'https://www.instagram.com/sviesa.sliet/',
+        media_type: 'IMAGE',
+        timestamp: new Date().toISOString(),
+      },
+      {
+        id: 'placeholder-5',
+        caption: 'Capturing moments that matter.',
+        media_url: '/images/IMG (1).jpeg',
+        permalink: 'https://www.instagram.com/sviesa.sliet/',
         media_type: 'IMAGE',
         timestamp: new Date().toISOString(),
       },
@@ -106,10 +131,13 @@ const InstagramFeed = () => {
         <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-8">
           {posts.slice(0, 6).map((post, idx) => {
             const isVideo = post.media_type === 'VIDEO' || post.media_type === 'REEL';
+            const isFeatured = post.featured;
             return (
               <div
                 key={post.id || idx}
-                className="group relative overflow-hidden rounded-lg border border-deep-crimson/20 bg-pure-black hover:border-brand-red/50 transition-all duration-300"
+                className={`group relative overflow-hidden rounded-lg border ${
+                  isFeatured ? 'border-brand-red/50 ring-2 ring-brand-red/30' : 'border-deep-crimson/20'
+                } bg-pure-black hover:border-brand-red/50 transition-all duration-300`}
               >
                 <div className="aspect-square bg-gradient-to-br from-deep-crimson/10 to-brand-red/10 relative overflow-hidden">
                   {post.media_url ? (
@@ -125,6 +153,11 @@ const InstagramFeed = () => {
                     </div>
                   )}
                   <div className="absolute inset-0 bg-pure-black/20 group-hover:bg-pure-black/10 transition-colors duration-300"></div>
+                  {isFeatured && (
+                    <div className="absolute top-3 right-3 px-3 py-1 rounded-full bg-brand-red text-soft-white text-xs uppercase tracking-wide font-semibold">
+                      ⭐ Featured
+                    </div>
+                  )}
                   <div className="absolute top-3 left-3 px-3 py-1 rounded-full bg-pure-black/70 text-soft-white text-xs uppercase tracking-wide flex items-center gap-2">
                     {isVideo ? <FiFilm /> : <FiImage />} {formatDate(post.timestamp)}
                   </div>
@@ -135,7 +168,7 @@ const InstagramFeed = () => {
                     {post.caption || 'No caption provided.'}
                   </p>
                   <div className="flex items-center justify-between text-sm">
-                    <span className="text-soft-white/50">Top post</span>
+                    <span className="text-soft-white/50">{isFeatured ? 'Latest post' : 'Top post'}</span>
                     {post.permalink ? (
                       <a
                         href={post.permalink}
